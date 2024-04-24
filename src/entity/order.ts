@@ -15,7 +15,7 @@ export default class Order {
     }
 
     total(): number {
-        return this._items.reduce((acumulator, item) => acumulator + item.price, 0);
+        return this._items.reduce((acumulator, item) => acumulator + item.orderItemTotal(), 0);
     }
 
     validate(): void {
