@@ -30,5 +30,9 @@ export default class Order {
         if(this._items.length === 0){
             throw new Error('Item qtd must be greate than 0');
         }
+
+        if(this._items.some(item => item.quantity <= 0)){
+            throw new Error("Quantity must be greater than 0")
+        }
     }
 }
