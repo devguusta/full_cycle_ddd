@@ -15,7 +15,7 @@ const address = new Address(
 customer.Address = address;
 customer.activate();
 
-const item1 = new OrderItem('1', 'Shampoo', 10);
-const item2 = new OrderItem('2', 'Conditioner', 15);
+const item1 = new OrderItem('1', 'Shampoo', 10, 1, "p1");
+const item2 = new OrderItem('2', 'Conditioner', 15, 1, "p1");
 
 const order = new Order('1', customer.id, [item1, item2]);
