@@ -66,7 +66,16 @@ changeName(name: string) {
 
  set Address(address: Address) {
      this._address = address;
-     this.validate();
+    
  }
+
+ get Address(): Address {
+    return this._address;
+  }
+
+ changeAddress(address: Address) {
+    this._address = address;
+    this.validate();
+  }
 
 }
