@@ -1,4 +1,5 @@
 {
     "files.autoSave": "onWindowChange",
-    "jestrunner.jestCommand": "npm test"
+   // "jestrunner.jestCommand": "npm test"
+        "jestrunner.jestCommand": " npm test"
 }
