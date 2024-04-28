@@ -31,7 +31,7 @@ describe("customer unit tests", () => {
        const address = new Address(
         "Rua dois",
         "Belford Roxo",
-        "RJ",
+        
         "26140-630",
         "83"
     );
