@@ -26,11 +26,20 @@ export default class Order {
         return this._items;
     }
 
+
+
     
 
     total(): number {
         return this._items.reduce((acumulator, item) => acumulator + item.orderItemTotal(), 0);
     }
+
+
+   changeItems(items: OrderItem[]): void {
+         this._items = items;
+         this._total = this.total();
+         this.validate();
+   }
 
     validate(): void {
         if (this._id.length === 0){
