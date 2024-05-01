@@ -1,4 +1,4 @@
-import CustomerRepository from "../../../infrastructure/repository/customer.repository";
+import CustomerRepository from "../../../infrastructure/customer/repository/customer.repository";
 import Address from "../value-object/address";
 import Customer from "../entity/customer";
 

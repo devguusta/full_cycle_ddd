@@ -1,7 +1,7 @@
 import { where } from "sequelize";
-import Product from "../../domain/product/entity/product";
-import ProductRepositoryInterface from "../../domain/product/repository/product-repository.interface";
-import ProductModel from "../db/sequelize/model/product.model";
+import Product from "../../../domain/product/entity/product";
+import ProductRepositoryInterface from "../../../domain/product/repository/product-repository.interface";
+import ProductModel from "./product.model";
 
 export default class ProductRepository implements ProductRepositoryInterface {
   async  findAll(): Promise<Product[]> {
