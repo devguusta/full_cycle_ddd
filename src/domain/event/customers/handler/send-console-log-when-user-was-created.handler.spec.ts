@@ -15,7 +15,7 @@ describe("SendConsoleLogWhenUserWasCreatedHandler", () => {
 
         handler.handle(event);
 
-        expect(consoleSpy).toHaveBeenCalledWith(`This is the first console.log of event: ${event}`);
+        expect(consoleSpy).toHaveBeenCalledWith(`This is the first console.log of event: CustomerCreatedEvent`);
     });
 
    
