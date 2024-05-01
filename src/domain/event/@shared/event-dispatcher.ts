@@ -10,7 +10,13 @@ export default class EventDispatcher implements EventDispatcherInterface {
         return this.eventHandlers;
     }
     notify(event: EventInterface): void {
-        throw new Error("Method not implemented.");
+        const eventName: string = event.constructor.name;
+        if (!this.eventHandlers[eventName]) {
+            return;
+        }
+        this.eventHandlers[eventName].forEach((handler: EventHandlerInterface<EventInterface>) => {
+            handler.handle(event);
+        });
     }
     register(event: string, handler: EventHandlerInterface<EventInterface>): void {
 
