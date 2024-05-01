@@ -6,9 +6,9 @@ export default class EventDispatcher implements EventDispatcherInterface {
 
     private eventHandlers: { [eventName: string]: EventHandlerInterface[] } = {};
 
-  get getEventHandlers(): { [eventName: string]: EventHandlerInterface[] } {
-    return this.eventHandlers;
-  }
+    get getEventHandlers(): { [eventName: string]: EventHandlerInterface[] } {
+        return this.eventHandlers;
+    }
     notify(event: EventInterface): void {
         throw new Error("Method not implemented.");
     }
@@ -22,7 +22,13 @@ export default class EventDispatcher implements EventDispatcherInterface {
 
     }
     unregister(event: string, handler: EventHandlerInterface<EventInterface>): void {
-        throw new Error("Method not implemented.");
+        if (!this.eventHandlers[event]) {
+            return;
+        }
+        const index = this.eventHandlers[event].indexOf(handler);
+        if (index !== -1) {
+            this.eventHandlers[event].splice(index, 1);
+        }
     }
     unregisterAll(): void {
         throw new Error("Method not implemented.");
