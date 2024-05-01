@@ -1,4 +1,5 @@
-import EventDispatcher from "../../@shared/event-dispatcher";
+
+import EventDispatcher from "../../../../@shared/event/event-dispatcher";
 import CustomerActivatedEvent from "../customer-activated.event";
 import SendEmailWhenUserWasActivateHandle from "./send-email-when-user-was-activate.handler";
 
