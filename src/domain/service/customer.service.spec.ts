@@ -1,5 +1,8 @@
 import CustomerRepository from "../../infrastructure/repository/customer.repository";
+import Address from "../entity/address";
+import Customer from "../entity/customer";
 import EventDispatcher from "../event/@shared/event-dispatcher";
+import SendConsoleLogWhenAddressWasUpdatedHandler from "../event/customers/handler/send-console-log-when-address-was-updated";
 import SendConsoleLogWhenUserWasCreatedHandler from "../event/customers/handler/send-console-log-when-user-was-created.handler";
 import SendConsoleLog2WhenUserWasCreatedHandler from "../event/customers/handler/send-console-log-when-user-was-created.handler2";
 import CustomerService from "./customer.service";
@@ -28,6 +31,32 @@ describe("Customer service tests", () => {
 
         expect(spyEventHandler).toHaveBeenCalledTimes(1)
         expect(spyEventHandler2).toHaveBeenCalledTimes(1)
+
+    });
+
+    it("should update the customer address and notify the listeners", async () => {
+        const customerRepository = new CustomerRepository();
+        const eventDispatcher = new EventDispatcher();
+        const eventHandler = new SendConsoleLogWhenAddressWasUpdatedHandler();
+
+        const customerService = new CustomerService(customerRepository, eventHandler, eventDispatcher,);
+        const spyEventHandler = jest.spyOn(eventHandler, "handle");
+
+        const customer = new Customer(uuid(), "test");
+        const address = new Address(
+            "street",
+            "city",
+            "zip",
+            "83"
+        );
+
+        customerService.updateCustomerAddress(customer, address);
+
+        expect(eventDispatcher.getEventHandlers["CustomerChangedAddress"]).toBeDefined();
+        expect(eventDispatcher.getEventHandlers["CustomerChangedAddress"].length).toBe(1);
+        expect(eventDispatcher.getEventHandlers["CustomerChangedAddress"][0]).toMatchObject(eventHandler);
+
+        expect(spyEventHandler).toHaveBeenCalledTimes(1)
 
     });
 });
