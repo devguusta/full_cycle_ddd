@@ -1,5 +1,5 @@
-import CustomerRepository from "../../infrastructure/repository/customer.repository";
-import Address from "../entity/address";
+import CustomerRepository from "../../../infrastructure/repository/customer.repository";
+import Address from "../value-object/address";
 import Customer from "../entity/customer";
 import EventDispatcherInterface from "../event/@shared/event-dispatcher.interface";
 import EventHandlerInterface from "../event/@shared/event-handler.interface";

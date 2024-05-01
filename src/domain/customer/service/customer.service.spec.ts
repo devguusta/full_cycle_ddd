@@ -1,12 +1,13 @@
-import CustomerRepository from "../../infrastructure/repository/customer.repository";
-import Address from "../entity/address";
+import CustomerRepository from "../../../infrastructure/repository/customer.repository";
+import Address from "../value-object/address";
 import Customer from "../entity/customer";
-import EventDispatcher from "../event/@shared/event-dispatcher";
+
 import SendConsoleLogWhenAddressWasUpdatedHandler from "../event/customers/handler/send-console-log-when-address-was-updated";
 import SendConsoleLogWhenUserWasCreatedHandler from "../event/customers/handler/send-console-log-when-user-was-created.handler";
 import SendConsoleLog2WhenUserWasCreatedHandler from "../event/customers/handler/send-console-log-when-user-was-created.handler2";
 import CustomerService from "./customer.service";
 import { v4 as uuid } from 'uuid';
+import EventDispatcher from "../../@shared/event/event-dispatcher";
 describe("Customer service tests", () => {
 
 

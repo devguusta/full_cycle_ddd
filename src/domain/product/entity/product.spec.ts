@@ -1,7 +1,7 @@
-import Address from "./address";
-import Customer from "./customer";
-import Order from "./order";
-import OrderItem from "./order_item";
+import Address from "../../customer/value-object/address";
+import Customer from "../../customer/entity/customer";
+import Order from "../../checkout/entity/order";
+import OrderItem from "../../checkout/entity/order_item";
 import Product from "./product";
 
 describe("Product unit tests", () => {
