@@ -40,4 +40,21 @@ describe("Domain events tests", () => {
         );
     })
 
+    it("Should unregister all event handlers", () => {
+        const eventDispatcher = new EventDispatcher();
+        const eventHandler = new SendEmailWhenProductIsCreatedHandler();
+
+        eventDispatcher.register("ProductCreatedEvent", eventHandler);
+
+        expect(
+            eventDispatcher.getEventHandlers["ProductCreatedEvent"]
+        ).toBeDefined();
+
+        eventDispatcher.unregisterAll();
+
+        expect(
+            eventDispatcher.getEventHandlers["ProductCreatedEvent"]
+        ).toBeUndefined();
+    })
+
 })
