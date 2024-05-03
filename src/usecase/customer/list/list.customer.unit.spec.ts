@@ -1,5 +1,5 @@
-import CustomerFactory from "../../domain/customer/factory/customer.factory";
-import Address from "../../domain/customer/value-object/address";
+import CustomerFactory from "../../../domain/customer/factory/customer.factory";
+import Address from "../../../domain/customer/value-object/address";
 import ListCustomerUseCase from "./list.customer.usecase";
 
 const customer1 = CustomerFactory.createWithAddress(
@@ -11,7 +11,6 @@ const customer2 = CustomerFactory.createWithAddress(
   "Jane 2",
   new Address("Street 2", "city 2", "zip 2", "number")
 );
-
 const input = {};
 const MockRepository = () => {
   return {
