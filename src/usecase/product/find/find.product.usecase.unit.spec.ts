@@ -1,9 +1,9 @@
-import UpdateProductUseCase from "./update.product.usecase";
+import FindProductUseCase from "./find.product.usecase";
 
 
 
 const product = {
-    type: "b" as const,
+
     name: "Malbec",
     price: 100.00,
     id: "SKU283198"
@@ -20,26 +20,22 @@ const MockRepository = () => {
 };
 
 const input = {
-    type: "a" as const,
-    name: "Malbec",
-    price: 120.00,
     id: "SKU283198"
 };
 
 
 
 
-describe('Unit test update product usecase', () => {
+describe('Unit test find product usecase', () => {
 
-    it("Should update a product", async () => {
+    it("Should find a product", async () => {
         const repository = MockRepository();
 
-        const usecase = new UpdateProductUseCase(repository);
+        const usecase = new FindProductUseCase(repository);
 
         const output = await usecase.execute(input)
-        input.id = output.id;
 
-        expect(output).toEqual(input);
+        expect(output).toEqual(product);
     });
 
 
