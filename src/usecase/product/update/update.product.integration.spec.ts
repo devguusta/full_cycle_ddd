@@ -2,7 +2,8 @@ import { Sequelize } from "sequelize-typescript";
 import ProductModel from "../../../infrastructure/product/repository/product.model";
 import Product from '../../../domain/product/entity/product';
 import ProductRepository from "../../../infrastructure/product/repository/product.repository";
-import CreateProductUseCase from "./create.product.usecase";
+import UpdateProductUseCase from "./update.product.usecase";
+
 
 
 describe("Create product integration test use case", () => {
@@ -32,16 +33,16 @@ describe("Create product integration test use case", () => {
         const productRepository = new ProductRepository();
         await productRepository.create(product);
 
-        const input = { name: "Malbec", type: "a", price: 200 } as const;
+        const input = { name: "Rexona", type: "b", price: 200, id: product.id } as const;
         const outputInterface = {
             id: expect.any(String),
-            name: "Malbec",
-            price: 200,
-            type: "a",
+            name: "Rexona",
+            price: 400,
+            type: "b",
 
         }
 
-        const result = await new CreateProductUseCase(productRepository).execute(input);
+        const result = await new UpdateProductUseCase(productRepository).execute(input);
         expect(result).toEqual(outputInterface);
 
     });
