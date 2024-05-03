@@ -2,11 +2,11 @@ import { Sequelize } from "sequelize-typescript";
 import ProductModel from "../../../infrastructure/product/repository/product.model";
 import Product from '../../../domain/product/entity/product';
 import ProductRepository from "../../../infrastructure/product/repository/product.repository";
-import UpdateProductUseCase from "./update.product.usecase";
+import FindAllProductsUseCase from "./findall.products.usecase";
 
 
 
-describe("Update product integration test use case", () => {
+describe("Find all product integration test use case", () => {
     let sequelize: Sequelize;
 
     beforeEach(async () => {
@@ -25,24 +25,37 @@ describe("Update product integration test use case", () => {
         await sequelize.close();
     });
 
-    it("should update a Product", async () => {
+    it("should find a Product", async () => {
 
         const product = new Product("SKU1239010", "Malbec", 200);
+        const product2 = new Product("SKU1239011230", "Natura", 20);
 
-        // Arrange
+
         const productRepository = new ProductRepository();
         await productRepository.create(product);
+        await productRepository.create(product2);
 
-        const input = { name: "Rexona", type: "b", price: 200, id: product.id } as const;
+        const input = {} as const;
         const outputInterface = {
-            id: expect.any(String),
-            name: "Rexona",
-            price: 400,
-            type: "b",
+            "products": [
+                {
+                    id: "SKU1239010",
+                    name: "Malbec",
+                    price: 200,
 
+
+                },
+                {
+                    id: "SKU1239011230",
+                    name: "Natura",
+                    price: 20,
+
+
+                }
+            ]
         }
 
-        const result = await new UpdateProductUseCase(productRepository).execute(input);
+        const result = await new FindAllProductsUseCase(productRepository).execute(input);
         expect(result).toEqual(outputInterface);
 
     });
