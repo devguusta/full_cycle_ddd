@@ -32,7 +32,7 @@ describe("E2E test for product", () => {
     it("Should not create a product", async () => {
         const response = await request(app).post("/product").send({
             name: "Malbec",
-            type: "a"
+            type: "a",
 
 
         });
