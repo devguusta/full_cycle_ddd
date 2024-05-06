@@ -8,13 +8,13 @@ describe("customer unit tests", () => {
 
         expect(() => {
             new Customer("", "name");
-        }).toThrow('Id is required');
+        }).toThrow('Customer: Id is required');
     });
 
     it("Should throw error when name is empty", () => {
         expect(() => {
             new Customer("id", "");
-        }).toThrow('Name is required');
+        }).toThrow('Customer: Name is required');
     });
 
     it("Should change name", () => {
@@ -28,35 +28,35 @@ describe("customer unit tests", () => {
 
     it("Should activate customer", () => {
         const customer = new Customer("id", "name");
-       const address = new Address(
-        "Rua dois",
-        "Belford Roxo",
-        
-        "26140-630",
-        "83"
-    );
-    customer.Address = address;
-    customer.activate();
-    expect(customer.isActive).toBe(true);
+        const address = new Address(
+            "Rua dois",
+            "Belford Roxo",
+
+            "26140-630",
+            "83"
+        );
+        customer.Address = address;
+        customer.activate();
+        expect(customer.isActive).toBe(true);
     });
 
     it("Shouldthrow error when call activate and address is undefined", () => {
-      
+
 
         expect(() => {
             const customer = new Customer("id", "name");
             customer.activate();
         }).toThrow('Address is mandatory to activate a customer');
-     
-   
-   expect
+
+
+        expect
     });
 
     it("Should activate customer", () => {
         const customer = new Customer("id", "name");
-     
-    customer.deactivate();
-    expect(customer.isActive).toBe(false);
+
+        customer.deactivate();
+        expect(customer.isActive).toBe(false);
     });
 
     it("Should add reward points", () => {
