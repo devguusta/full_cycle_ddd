@@ -8,8 +8,7 @@ export default class Notification {
 
     addError(error: NotificationErrorProps) {
         this.errors.push(error);
-    };
-
+    }
 
     messages(context?: string): string {
         let message = "";
@@ -18,15 +17,16 @@ export default class Notification {
             if (!context || error.context === context) {
                 message += `${error.context}: ${error.message},`;
             }
-
         });
 
         return message;
-    };
+    }
 
-    hasErrors(): boolean { return this.errors.length > 0 };
+    hasErrors(): boolean {
+        return this.errors.length > 0;
+    }
 
     getErrors(): NotificationErrorProps[] {
         return this.errors;
     }
-};
+}

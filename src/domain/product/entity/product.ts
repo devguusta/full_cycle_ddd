@@ -1,11 +1,15 @@
+import Entity from "../../@shared/entity/entity.abstract";
+import Notification from "../../@shared/notification/notification";
+import NotificationError from "../../@shared/notification/notification.error";
 import ProductInterface from "./product.interface";
 
-export default class Product  implements ProductInterface{
-    private _id: string;
+export default class Product extends Entity implements ProductInterface {
+
     private _name: string;
     private _price: number;
 
     constructor(id: string, name: string, price: number) {
+        super();
         this._id = id;
         this._name = name;
         this._price = price;
@@ -13,20 +17,35 @@ export default class Product  implements ProductInterface{
     }
 
 
+
     validate(): void {
 
         if (this._id.length === 0) {
-            throw new Error("Id is required")
+            this.notification.addError({
+                context: "Product",
+                message: "Id is required",
+            });
+
         }
 
         if (this._name.length === 0) {
+            this.notification.addError({
+                context: "Product",
+                message: "Name is required",
+            });
 
-            throw new Error("Name is required")
         }
 
 
         if (this._price < 0) {
-            throw new Error("Price most be greate than zero")
+            this.notification.addError({
+                context: "Product",
+                message: "Price most be greate than zero",
+            });
+
+        }
+        if (this.notification.hasErrors()) {
+            throw new NotificationError(this.notification.getErrors());
         }
     }
 
@@ -42,7 +61,7 @@ export default class Product  implements ProductInterface{
 
     get id(): string {
         return this._id;
-    }   
+    }
 
     changeName(name: string): void {
 
